@@ -1,0 +1,28 @@
+\documentclass[a4paper, 12pt, finnish]{article}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage {amsmath}
+
+\title{\A Simple Recommender System}
+\author{Tony Kovanen}
+\date{27.1.2012}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Problem Description}
+The aim is a simple recommender system that recommends new movies to the user knowing only a list of movies and some features associated with the films (a coefficient between 0 and 1 that tells how strongly it can be assigned to some category). The user can rate movies on a scale from 0 to 5 stars. The program uses linear regression to fit a linear function \(h_{\theta}(x)\) to the data and predict ratings for films that have not been watched or rated yet. 
+
+\section{Representing the Data}
+Movies known by the system are put into two lists. Movies rated by the user (denoted as r), and movies not rated by the user \((r\prime)\). Rated films r can also be represented as a matrix X, where each row of the matrix represents a certain film from 1 to {\bf m} where m is the number of films in the {\bf training set} and each column represents a feature starting from 0 (we will soon se why from 0) to {\bf n} where n is the number of features, in this case categories.
+
+\section{Predicting Ratings}
+Our hypothesis function \(h_{\theta}(x)\) is how we predict a rating for an unrated movie. Here x is a vector of features for our unrated movie, and \(\theta\) is a vector of chosen parameters (we'll get to that next). If we define \(x_{0}\) to be equal to 1 for all movies in the training set, the function can be defined as follows: \( h_{\theta}(x) = \sum^{m}_{j = 0}(\theta_{j} x_{j})\) which is the same as \( h_{\theta}(x) = \theta^{t}x\) represented with vectors. Next well look at how we get the parameters \(\theta).
+
+\section{Finding the parameters \theta}
+The parameters \(\theta\) can be found with various different methods. We want to choose the parameters so that it fits our data as well as possible. One way of doing this is defining a cost function \(J(\theta)\) and minimizing the parameters for that cost function with e.g. the Gradient Descent algorithm. However learning the learning rate \(\alpha\) for this method is difficult, and the number of features in this case are quite low so the Normal Equation method should work well too for minimizing the square difference. We will then define the parameters \(\theta\) minimization as \(\theta = (X^{t}X)^{-1}X^{t}y\)
+
+\section{The Program as a Whole}
+The program as a whole works in iterations of the same functions. First with some method (not decided yet) we will choose films to the new user in a sense that will give as a good idea of what he/she likes (controversial with each other). Then we will minimize the parameters \(\theta\) using the normal equation method. Then we will predict ratings for all unrated movies using the hypothesis function \(h_{\theta}(x)\). We will then pick k (at the moment an undecided integer) number of best rated "guesses" and suggest them to the user. Then when the user rates a new movie we will start all over from minimizing the parameters \(\theta\) to get an even better view of what kind of movies the user would like to see.
+\end{document}  
