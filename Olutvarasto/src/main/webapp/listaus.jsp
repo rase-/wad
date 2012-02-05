@@ -10,7 +10,7 @@
         <h1>Lisää olut</h1>
 
         <form action="olut" method="POST">
-            Oluen nimi: <input type="text" name="nimi"><br/>
+            Oluen nimi: <input type="text" name="name"><br/>
             <input type="submit" value="Lisää">            
         </form>
 

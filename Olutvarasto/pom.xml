@@ -11,7 +11,11 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
-        
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>1.9.3</version>
+        </dependency>
         <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
