@@ -33,6 +33,7 @@ public class SimpleLeffaPalvelu implements LeffaPalvelu{
     }
 
     @Override
+    @Transactional
     public void update(Leffa leffa) {
         leffaDao.update(leffa);
     }

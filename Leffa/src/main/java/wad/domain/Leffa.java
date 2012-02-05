@@ -4,6 +4,7 @@
  */
 package wad.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
  * @author tonykovanen
  */
 @Entity
-public class Leffa {
+public class Leffa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;

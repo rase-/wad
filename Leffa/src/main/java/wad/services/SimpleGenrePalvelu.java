@@ -33,6 +33,7 @@ public class SimpleGenrePalvelu implements GenrePalvelu{
     }
 
     @Override
+    @Transactional
     public void update(Genre genre) {
         genreDao.update(genre);
     }
