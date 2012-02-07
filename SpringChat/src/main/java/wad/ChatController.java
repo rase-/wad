@@ -10,10 +10,13 @@ import java.util.Queue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -24,34 +27,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ChatController {
     private Queue<Viesti> viestit = new LinkedList<Viesti>();
     
-    @RequestMapping("Chat")
+    @RequestMapping(value = "Chat", method = RequestMethod.GET)
     public String asetaJaNaytaViestit(Model model, HttpSession session, HttpServletRequest request) {
        boolean kirjautunut = tarkistaKirjautuminen(session);
        if (!kirjautunut) {
            return "Login";
        }
+       model.addAttribute("viesti", new Viesti());
        model.addAttribute("viestit", viestit);
        model.addAttribute("contextPath", request.getContextPath());
        return "Chat.jsp";
        
     }
     
-    @RequestMapping("kommentti")
-    public String kasitteleUusiViestiJaChattiin(@RequestParam String viesti, HttpSession session) {
+    @RequestMapping(value = "Chat", method = RequestMethod.POST)
+    public String kasitteleUusiViestiJaChattiin(@Valid @ModelAttribute Viesti viesti, BindingResult result, HttpSession session) {
         boolean kirjautunut = tarkistaKirjautuminen(session);
+        if(result.hasErrors()) {
+            return "Chat.jsp";
+        }
         if (!kirjautunut) {
-            return "Login";
+            return "redirect:/Login";
         }
         
         String tunnus = "" + session.getAttribute("tunnus");
-        Viesti uusiViesti = new Viesti(tunnus, viesti);
+        viesti.setTunnus(tunnus);
         if (viestit.size() < 10) {
-            viestit.add(uusiViesti);
+            viestit.add(viesti);
         } else {
             viestit.poll();
-            viestit.add(uusiViesti);
+            viestit.add(viesti);
         }
-        return "Chat";
+        return "redirect:/Chat";
     }
     private boolean tarkistaKirjautuminen(HttpSession session) {
         if (session.getAttribute("tunnus") == null) {

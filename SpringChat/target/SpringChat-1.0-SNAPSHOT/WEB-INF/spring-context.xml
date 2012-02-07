@@ -22,5 +22,5 @@
     <context:component-scan base-package="wad" />
  
     <!-- Käytetään Spring MVC:tä annotaatioiden avulla -->
-    <mvc:annotation-driven /> 
+    <mvc:annotation-driven />
 </beans>

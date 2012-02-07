@@ -5,6 +5,7 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,12 +14,15 @@
     </head>
     <body>
         <strong>Chat</strong><br />
-        <form action ="kommentti" method="POST">
-            <input type="text" name="viesti" /><input type="submit" value="Lähetä" />
-        </form>
+        <form:form commandName="viesti" action = "${pageContext.request.contextPath}/Chat" method = "POST">
+            <form:input path = "viesti" /><form:errors path="viesti" /><br />
+            <input type="submit">
+            
+        </form:form>
+        
         <strong>Viestit</strong> <br />
-        <c:forEach var="viesti" items="${viestit}">
-            ${viesti.tunnus}: ${viesti.viesti} <br />
+        <c:forEach var="var" items="${viestit}">
+            ${var.tunnus}: ${var.viesti} <br />
         </c:forEach>
         <a href="${contextPath}/Logout"> kirjaudu ulos </a>
     </body>
