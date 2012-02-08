@@ -6,10 +6,7 @@ package wad.domain;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 /**
  *
@@ -24,7 +21,7 @@ public class Henkilo implements Serializable {
     private String puhelinnumero;
     @Column(name = "SAHKOPOSTIOSOITE")
     private String sahkopostiosoite;
-    @OneToMany
+    @OneToMany(mappedBy = "henkilo", cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private List<Asunto> kohteet;
 
     public void setKohteet(List<Asunto> kohteet) {

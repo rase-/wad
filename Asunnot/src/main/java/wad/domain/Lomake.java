@@ -23,7 +23,7 @@ public class Lomake {
     private String postinumero;
     @Pattern(regexp="^[a-zA-Z0-9äöüÄÖÜ]*$", message="Kaupungin nimen ei tule sisältää erikoismerkkejä")
     private String kaupunki;
-    @Pattern(regexp="[a-zA-Z0-9 ]*+", message="Osoitteen tulla olla muotoa: Osoite katunumero (rappu) (asunto)")
+    @Pattern(regexp="[a-zA-Z0-9 ÄäÖöÅå]*+", message="Osoitteen tulla olla muotoa: Osoite katunumero (rappu) (asunto)")
     private String osoite;
     @Pattern(regexp="[0-9]{4}", message="Vuosiluvun kuuluu olla neljänumeroinen")
     private String vuosi;

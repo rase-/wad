@@ -43,8 +43,8 @@ public class AsuntoController {
         Asunto asunto = lomake.teeAsunto();
         Henkilo henkilo = lomake.teeHenkilo();
         asunto.setHenkilo(henkilo);
-        henkilo.lisaaKohde(asunto);
         asuntoPalvelu.lisaa(asunto);
+        henkilo.lisaaKohde(asunto);
         henkiloPalvelu.lisaa(henkilo);
         return "redirect:/asunnot";
     }
