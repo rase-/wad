@@ -16,7 +16,7 @@
     <body>
         <h2>Asunnot</h2>
         <c:forEach var="asunto" items="${asunnot}">
-            asunto.osoite, asunto.postinumero asunto.kaupunki, asunto.vuosi, asunto.koko
+            ${asunto.henkilo.nimi}, ${asunto.henkilo.sahkoposti}, ${asunto.henkilo.puhelinnumero}: ${asunto.osoite}, ${asunto.postinumero} ${asunto.kaupunki}, rakennettu ${asunto.vuosi}, ${asunto.koko} neliötä, kunto ${asunto.kunto}
         </c:forEach>
         <h2>Lisää asunto</h2>
         <form:form commandName="lomake" action="${pageContext.request.contextPath}/asunnot" method="POST">

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,7 +28,16 @@ public class Asunto implements Serializable{
     private String vuosi;
     @Column(name = "KUNTO")
     private String kunto;
+    @ManyToOne
+    private Henkilo henkilo;
+    public Henkilo getHenkilo() {
+        return henkilo;
+    }
 
+    public void setHenkilo(Henkilo henkilo) {
+        this.henkilo = henkilo;
+    }
+    
     public String getKaupunki() {
         return kaupunki;
     }

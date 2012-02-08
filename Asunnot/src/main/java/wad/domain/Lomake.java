@@ -12,18 +12,18 @@ import javax.validation.constraints.Size;
  * @author tonykova
  */
 public class Lomake {
-    @Pattern(regexp="^[a-zA-Z0-9äöüÄÖÜ]*$", message="Nimi ei saa sisältää erikoismerkkejä")
+    @Pattern(regexp="^[a-zA-Z0-9äöüÄÖÜ ]*$", message="Nimi ei saa sisältää erikoismerkkejä")
     private String nimi;
     @Pattern(regexp="[0-9]{10}", message="Puhelinnumerossa pitää olla 10 numeroa")
     private String puhelinnumero;
-    @Pattern(regexp="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$", message="Sähköpostiosoitteen tulee olla oikean muotoinen")
+    @Pattern(regexp=".+@.+\\.[a-z]+", message="Sähköpostiosoitteen tulee olla oikean muotoinen")
     private String sahkopostiosoite;
     private int koko;
     @Pattern(regexp="[0-9]{5}", message="Postinumeron pitää koostua viidestä numerosta")
     private String postinumero;
     @Pattern(regexp="^[a-zA-Z0-9äöüÄÖÜ]*$", message="Kaupungin nimen ei tule sisältää erikoismerkkejä")
     private String kaupunki;
-    @Pattern(regexp="^[a-zA-Z0-9äöüÄÖÜ]*$ [0-9]+[ ][a-z]*+ [0-9]*+", message="Osoitteen tulla olla muotoa: Osoite katunumero (rappu) (asunto)")
+    @Pattern(regexp="[a-zA-Z0-9 ]*+", message="Osoitteen tulla olla muotoa: Osoite katunumero (rappu) (asunto)")
     private String osoite;
     @Pattern(regexp="[0-9]{4}", message="Vuosiluvun kuuluu olla neljänumeroinen")
     private String vuosi;

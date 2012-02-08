@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import wad.domain.Asunto;
+import wad.domain.Henkilo;
 import wad.domain.Lomake;
 import wad.service.AsuntoPalvelu;
 import wad.service.HenkiloPalvelu;
@@ -38,8 +40,12 @@ public class AsuntoController {
         if (result.hasErrors()) {
             return "asunnot";
         }
-        asuntoPalvelu.lisaa(lomake.teeAsunto());
-        henkiloPalvelu.lisaa(lomake.teeHenkilo());
+        Asunto asunto = lomake.teeAsunto();
+        Henkilo henkilo = lomake.teeHenkilo();
+        asunto.setHenkilo(henkilo);
+        henkilo.lisaaKohde(asunto);
+        asuntoPalvelu.lisaa(asunto);
+        henkiloPalvelu.lisaa(henkilo);
         return "redirect:/asunnot";
     }
     @RequestMapping(value = "asunnot", method=RequestMethod.GET)
