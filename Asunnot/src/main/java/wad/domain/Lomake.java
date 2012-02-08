@@ -16,7 +16,7 @@ public class Lomake {
     private String nimi;
     @Pattern(regexp="[0-9]{10}", message="Puhelinnumerossa pitää olla 10 numeroa")
     private String puhelinnumero;
-    @Pattern(regexp="[a-z]+[@][a-z]+[.][a-z]", message="Sähköpostiosoitteen tulee olla oikean muotoinen")
+    @Pattern(regexp="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$", message="Sähköpostiosoitteen tulee olla oikean muotoinen")
     private String sahkopostiosoite;
     private int koko;
     @Pattern(regexp="[0-9]{5}", message="Postinumeron pitää koostua viidestä numerosta")
