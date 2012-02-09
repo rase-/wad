@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wad.database.GenreDao;
+import wad.repository.GenreRepository;
 import wad.domain.Genre;
 
 /**
@@ -18,29 +19,29 @@ import wad.domain.Genre;
 @Service
 public class SimpleGenrePalvelu implements GenrePalvelu{
     @Autowired
-    GenreDao genreDao;
+    GenreRepository genreRepo;
     
     @Override
     @Transactional
     public void lisaa(Genre genre) {
-        genreDao.create(genre);
+        genreRepo.save(genre);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Genre> listaa() {
-        return genreDao.list();
+        return genreRepo.findAll();
     }
 
     @Override
     @Transactional
     public void update(Genre genre) {
-        genreDao.update(genre);
+        genreRepo.save(genre);
     }
 
     @Override
     public Genre hae(String nimi) {
-        return genreDao.read(nimi);
+        return genreRepo.findOne(nimi);
     }
     
 }
