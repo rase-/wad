@@ -11,4 +11,5 @@ public interface HuonePalvelu {
     public List<Henkilo> ketaHuoneessa(int huoneId);
     public Huone etsiHuone(int huoneId);
     public void update(Huone huone);
+    public void lisaaHenkilo(Henkilo henkilo, int huoneId);
 }

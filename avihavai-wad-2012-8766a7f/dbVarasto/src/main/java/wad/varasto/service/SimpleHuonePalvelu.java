@@ -52,4 +52,13 @@ public class SimpleHuonePalvelu implements HuonePalvelu {
     public void update(Huone huone) {
         huoneDao.update(huone);
     }
+
+    @Override
+    @Transactional
+    public void lisaaHenkilo(Henkilo henkilo, int huoneId) {
+        Huone huone = huoneDao.read(huoneId);
+        huone.getHenkilot().add(henkilo);
+        henkilo.setHuone(huone);
+        huoneDao.update(huone);
+    }
 }

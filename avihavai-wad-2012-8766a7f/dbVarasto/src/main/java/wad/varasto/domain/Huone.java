@@ -14,7 +14,7 @@ public class Huone implements Serializable {
     private int kerros;
     @Column(name = "KAPASITEETTI")
     private int kapasiteetti;
-    @OneToMany
+    @OneToMany(mappedBy = "huone", cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private List<Henkilo> henkilot;
     public Huone() {
     }

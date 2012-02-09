@@ -62,10 +62,7 @@ public class HenkiloController {
         Huone huone = huonePalvelu.etsiHuone(huoneId);
         Henkilo henkilo = henkiloPalvelu.hae(henkilonNimi);
         if (huone.getHenkilot().size() + 1 <= huone.getKapasiteetti() && !(henkilo.getHuone() != null && ovatkoSamat(henkilo.getHuone().getId(), huone.getId()))) {
-            henkilo.setHuone(huone);
-            huone.lisaaHenkilo(henkilo);
-            henkiloPalvelu.update(henkilo);
-            huonePalvelu.update(huone);
+             huonePalvelu.lisaaHenkilo(henkilo, huoneId);
         }
         
         return "redirect:/naytaHenkilo/{henkilonNimi}";
