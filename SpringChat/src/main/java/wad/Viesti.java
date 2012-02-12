@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 public class Viesti {
     @Pattern(regexp="\\w+", message = "KŠyttŠjŠtunnus tulee olla yksi sana")
     private String tunnus;
+    @NotNull
     @Pattern(regexp="^[a-zA-Z0-9ŠšŸ€…†]*$", message="ViestissŠ ei saa olla erikoismerkkejŠ")
     private String viesti;
     
