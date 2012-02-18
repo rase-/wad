@@ -10,9 +10,16 @@ import wad.spring.repository.TeamRepository;
 @Service
 public class TeamServiceImpl implements TeamService {
 
-    @Autowired
     TeamRepository teamRepository;
-
+    
+    public TeamServiceImpl() {
+        
+    }
+    @Autowired
+    public TeamServiceImpl(TeamRepository teamrepo) {
+        this.teamRepository = teamrepo;
+    }
+    
     @Override
     @Transactional
     public void create(Team team) {

@@ -14,7 +14,7 @@ public class Player implements Serializable {
     private Long id;
     @NotNull(message = "Name must be defined.")
     @Size(min = 1, max = 40, message = "Name length must be between 1 and 40.")
-    @Pattern(regexp = "\\w+", message = "Name must contain only words.")
+    @Pattern(regexp = "\\w*+", message = "Name must contain only words.")
     private String name;
     @ManyToOne(cascade = {CascadeType.ALL})
     private Team team;

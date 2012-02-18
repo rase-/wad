@@ -7,6 +7,7 @@ package wad.spring.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Team implements Serializable {
@@ -14,10 +15,13 @@ public class Team implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Pattern(regexp="[a-zA-Z0-9']*+", message="Joukkueen nimen tulee sisältää vain kirjaimia, numeroita ja ':sta")
     private String name;
-    @OneToMany(mappedBy = "team", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "team", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Player> players;
-
+    @OneToMany(mappedBy = "team", cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<AnnualBudget> budgets;
+    
     public Long getId() {
         return id;
     }
@@ -53,5 +57,8 @@ public class Team implements Serializable {
     @Override
     public String toString() {
         return this.name;
+    }
+    public void addBudget(AnnualBudget budget) {
+        this.budgets.add(budget);
     }
 }

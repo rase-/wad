@@ -1,4 +1,3 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -8,7 +7,7 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <name>spring-data-jpa-eclipselink-validation</name>
+    <name>MVC</name>
     <properties>
         <spring-version>3.1.0.RELEASE</spring-version>
         <spring-data-version>1.0.3.RELEASE</spring-data-version>
@@ -189,7 +188,7 @@
             <version>1.0.0.GA</version>
             <classifier/>
         </dependency>
-	
+
 	<!-- jetty for he-ro-kuuu -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -296,7 +295,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-	
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
