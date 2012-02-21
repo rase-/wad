@@ -1,5 +1,6 @@
 package wad.spring.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import wad.spring.domain.Course;
 import wad.spring.domain.Role;
 import wad.spring.domain.StudentFormObject;
 import wad.spring.domain.User;
@@ -48,6 +50,16 @@ public class AdminController {
         list.add(role);
         user.setRoles(list);
         userRepo.save(user);
+        return "redirect:/admin/home";
+    }
+    @RequestMapping(value = "course", method = RequestMethod.GET)
+    public String showForm(Model model) {
+        model.addAttribute("course", new Course());
+        return "admin/course";
+    }
+    @RequestMapping(value = "course", method = RequestMethod.POST)
+    public String addCouse(@ModelAttribute("course") Course course, Principal principal) {
+        course.setLecturer(userRepo.findByUsername(principal.getName()));
         return "redirect:/admin/home";
     }
 }

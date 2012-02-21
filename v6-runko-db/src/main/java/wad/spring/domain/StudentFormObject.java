@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class StudentFormObject {
     @NotNull
     private String name;
-    @NotNull
+    
     private String username;
     private String password;
 

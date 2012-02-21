@@ -1,10 +1,17 @@
 package wad.spring.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import wad.spring.domain.Role;
 import wad.spring.domain.SampleObject;
+import wad.spring.domain.User;
+import wad.spring.repository.UserRepository;
 import wad.spring.service.ObjectFactory;
 import wad.spring.service.SecureService;
 
@@ -12,13 +19,26 @@ import wad.spring.service.SecureService;
 public class HomeController {
 
     @Autowired
+    UserRepository userRepo;
+    @Autowired
     SecureService secureService;
     @Autowired
     ObjectFactory postFilterExample;
 
     @RequestMapping(value = "/home")
-    public String home() {
+    public String home(Model model) {
         secureService.executeFreely();
+        List<User> users = userRepo.findAll();
+        List<User> students = new ArrayList<User>();
+        for (User u : users) {
+            for (Role r : u.getRoles()) {
+                if (r.getRolename().equals("student")) {
+                    students.add(u);
+                    break;
+                }
+            }
+        }
+        model.addAttribute("students", students);
         return "home";
     }
 
