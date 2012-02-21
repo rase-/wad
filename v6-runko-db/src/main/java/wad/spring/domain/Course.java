@@ -19,7 +19,6 @@ public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
-    @NotNull
     @Pattern(regexp="[a-zA-Z0-9öäÖÄåÅ ]+", message="Kurssin nimessä ei tule olla erikoismerkkejä")
     private String name;
     @OneToOne
@@ -28,7 +27,7 @@ public class Course implements Serializable {
     @ManyToMany
     private List<User> students;
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -48,9 +47,6 @@ public class Course implements Serializable {
         return students;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public void setStudents(List<User> students) {
         this.students = students;
