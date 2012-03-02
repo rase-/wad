@@ -16,7 +16,8 @@ public class User implements Serializable {
     private String password;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Role> roles;
-
+    
+    
     public Long getId() {
         return id;
     }
@@ -55,5 +56,9 @@ public class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    public boolean equals(User user) {
+        if (user.getUsername().equals(this.getUsername()) && user != null) return true;
+        return false;
     }
 }

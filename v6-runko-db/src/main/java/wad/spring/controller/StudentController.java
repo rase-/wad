@@ -22,18 +22,19 @@ import wad.spring.repository.UserRepository;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
+
     @Autowired
     UserRepository userRepo;
-    
     @Autowired
     CourseRepository courseRepo;
-    
+
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(Model model, Principal principal) {
         model.addAttribute("student", userRepo.findByUsername(principal.getName()));
         model.addAttribute("studentform", new StudentFormObject());
         return "student/home";
     }
+
     @RequestMapping(value = "home", method = RequestMethod.POST)
     public String changeInformation(@Valid @ModelAttribute("studentform") StudentFormObject studentform, BindingResult result, Principal principal) {
         if (result.hasErrors()) {
@@ -45,10 +46,16 @@ public class StudentController {
         userRepo.save(user);
         return "redirect:/student/home";
     }
+
     @RequestMapping(value = "course/{courseId}", method = RequestMethod.GET)
     public String signUpToCourse(@PathVariable Long courseId, Principal principal) {
         User user = userRepo.findByUsername(principal.getName());
         Course course = courseRepo.findOne(courseId);
+        for (User u : course.getStudents()) {
+            if (u.getUsername().equals(user.getUsername())) {
+                return "redirect:/home";
+            }
+        }
         course.getStudents().add(user);
         courseRepo.save(course);
         return "redirect:/home";

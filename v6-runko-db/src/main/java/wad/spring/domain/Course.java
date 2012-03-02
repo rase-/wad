@@ -18,7 +18,7 @@ import javax.validation.constraints.Pattern;
 public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private long id;
+    private Long id;
     @Pattern(regexp="[a-zA-Z0-9öäÖÄåÅ ]+", message="Kurssin nimessä ei tule olla erikoismerkkejä")
     private String name;
     @OneToOne

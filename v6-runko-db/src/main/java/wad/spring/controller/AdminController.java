@@ -15,13 +15,16 @@ import wad.spring.domain.Course;
 import wad.spring.domain.Role;
 import wad.spring.domain.StudentFormObject;
 import wad.spring.domain.User;
+import wad.spring.repository.CourseRepository;
 import wad.spring.repository.UserRepository;
 import wad.spring.service.SecureService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+    @Autowired
+    CourseRepository courseRepo;
+    
     @Autowired
     UserRepository userRepo;
 
@@ -60,6 +63,7 @@ public class AdminController {
     @RequestMapping(value = "course", method = RequestMethod.POST)
     public String addCouse(@ModelAttribute("course") Course course, Principal principal) {
         course.setLecturer(userRepo.findByUsername(principal.getName()));
+        courseRepo.save(course);
         return "redirect:/admin/home";
     }
 }

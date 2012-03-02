@@ -8,16 +8,20 @@ import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import wad.spring.domain.Course;
 import wad.spring.domain.Role;
 import wad.spring.domain.SampleObject;
 import wad.spring.domain.User;
+import wad.spring.repository.CourseRepository;
 import wad.spring.repository.UserRepository;
 import wad.spring.service.ObjectFactory;
 import wad.spring.service.SecureService;
 
 @Controller
 public class HomeController {
-
+    @Autowired
+    CourseRepository courseRepo;
+    
     @Autowired
     UserRepository userRepo;
     @Autowired
@@ -30,6 +34,7 @@ public class HomeController {
         secureService.executeFreely();
         List<User> users = userRepo.findAll();
         List<User> students = new ArrayList<User>();
+        List<Course> courses = courseRepo.findAll();
         for (User u : users) {
             for (Role r : u.getRoles()) {
                 if (r.getRolename().equals("student")) {
@@ -38,6 +43,7 @@ public class HomeController {
                 }
             }
         }
+        model.addAttribute("courses", courses);
         model.addAttribute("students", students);
         return "home";
     }
