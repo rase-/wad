@@ -21,7 +21,7 @@ public class Course implements Serializable {
     private Long id;
     @Pattern(regexp="[a-zA-Z0-9öäÖÄåÅ ]+", message="Kurssin nimessä ei tule olla erikoismerkkejä")
     private String name;
-    @OneToOne
+    @ManyToOne
     private User lecturer;
     
     @ManyToMany
