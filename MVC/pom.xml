@@ -9,7 +9,7 @@
 
     <name>MVC</name>
     <properties>
-        <spring-version>3.1.0.RELEASE</spring-version>
+        <spring-version>5.3.18</spring-version>
         <spring-data-version>1.0.3.RELEASE</spring-data-version>
         
         <eclipselink-version>2.3.2</eclipselink-version>
