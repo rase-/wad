@@ -12,7 +12,7 @@
     <url>http://maven.apache.org</url>
     
     <properties>
-        <spring-version>3.1.0.RELEASE</spring-version>
+        <spring-version>5.3.18</spring-version>
         <eclipselink-version>2.3.2</eclipselink-version>
         <eclipselink-jpa-version>2.0.0</eclipselink-jpa-version>
         <hsqldb-version>1.8.0.10</hsqldb-version>
